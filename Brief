@@ -1,0 +1,25 @@
+
+
+I have spent some time building time series models in c# to forecast the future prices of currency pairs. Wanting to streamline the process, I explored the SARIMAX model (Seasonal Autoregressive Integrated Moving Average with Exogenous Regressors) within Python's statsmodels library, hoping it would validate the direction of my efforts. To my surprise, the model that fit best was very simple.
+
+In applying the SARIMAX model to daily data for the EUR/USD exchange rate, the best fitting model turned out to be an AR(1) model devoid of differentiation, a moving average component, seasonal components, or exogenous variables. In essence, it was a SARIMAX((1, 0, 0)x(0, 0, 0, 12)), exhibiting an AIC of -6928.08.
+
+My experience so far has largely been with the theory of time series models, and I found it strange that such a rudimentary model could outperform its more intricate counterparts.
+
+Here are some preliminary thoughts:
+
+>Overfitting: More complex models run the risk of overfitting the training data and failing to generalize to unseen data. The AR(1) model might be striking a better balance between fit and complexity.
+
+>Market Efficiency: The foreign exchange market is widely considered to be highly efficient, meaning that current prices accurately reflect all available information. If true, this could limit the predictability of price movements, making a simple AR(1) model as effective as any other.
+
+>Noise vs Signal: In any time series, there's an element of randomness (noise) alongside the underlying trend or cycle (signal). It's possible that the EUR/USD exchange rate data contains a lot of noise, which the AR(1) model is better at handling.
+
+>Data Characteristics: The characteristics of the data itself might favour the AR(1) model. For example, if the data shows strong short-term correlations but weak long-term correlations and seasonality, an AR(1) model might be the most appropriate.
+
+I am keen to hear others' insights as I have just begun delving into this subject. Have I overlooked any factors? Could there be methods to enhance the model or the modelling process?
+
+GitHub Link for the code: https://lnkd.in/et-4a9cH
+
+Code Output: [*********************100%***********************] 1 of 1 completed
+Best SARIMAX model: SARIMAX((1, 0, 0)x(0, 0, 0, 12)) with AIC=-6928.077004310366
+Mean Absolute Percentage Error (MAPE): 0.01%
